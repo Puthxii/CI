@@ -1,2 +1,1 @@
-# CI
-## Train codeingniter 
+# Train codeingniter 
