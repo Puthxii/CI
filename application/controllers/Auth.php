@@ -17,6 +17,7 @@ class Auth extends CI_Controller {
 		// var_dump($val);
 		if(!empty($val)){
 			$match = $val->password; //Get password for user from database
+			$role = $val->status;
 			if (password_verify($password, $match)) { //Condition if password matched
 			
 				$sess_array = array(
@@ -24,9 +25,15 @@ class Auth extends CI_Controller {
 					'username' => $val->username,
 					'isLoggedIn' => true,
 				);
-
 				$this->session->set_userdata($sess_array);
-				redirect(base_url('home'), 'refresh');
+
+				if ( $role == "1"){
+					redirect(base_url('home'), 'refresh');
+				}else if ( $role == "0"){
+					redirect(base_url('RegisterCompetition'), 'refresh');
+				}
+				
+				
 			} else {
 				// $output['status'] = false;
 				// $output['message'] = 'รหัสผ่านไม่ถูกต้อง';
